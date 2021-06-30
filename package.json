@@ -2,6 +2,9 @@
   "name": "blockchain",
   "version": "1.0.0",
   "description": "Simplified private Blockchain",
-  "main": "index.js",
-  "private": true
+  "main": "blockchain.js",
+  "private": true,
+  "dependencies": {
+    "crypto-js": "^4.0.0"
+  }
 }
