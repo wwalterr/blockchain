@@ -1,4 +1,10 @@
+const SHA256 = require("crypto-js/sha256");
+
 const fs = require("fs");
+
+const time = () => new Date().getTime().toString().slice(0, -3);
+
+const hash = (block) => SHA256(JSON.stringify(block)).toString();
 
 const encodeHex = (path, encode = "hex") => {
   const file = fs.readFileSync(path);
@@ -13,6 +19,8 @@ const decodeHex = (path, code, encode = "hex") => {
 };
 
 module.exports = {
+  time,
+  hash,
   encodeHex,
   decodeHex,
 };

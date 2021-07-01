@@ -2,7 +2,7 @@ const express = require("express");
 
 const morgan = require("morgan");
 
-const components = require("./blockchain");
+const blockchain = require("./blockchain");
 
 const controller = require("./controller");
 
@@ -18,7 +18,7 @@ class Server {
   constructor(port = 8000, log = "dev") {
     this.#application = express();
 
-    this.#blockchain = new components.Blockchain();
+    this.#blockchain = new blockchain.Blockchain();
 
     this.#port = port;
 
@@ -58,4 +58,6 @@ class Server {
   }
 }
 
-new Server();
+module.exports = {
+  Server,
+};
