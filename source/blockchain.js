@@ -112,9 +112,7 @@ class Blockchain {
 
       try {
         for (const _block of self.#chain) {
-          const blockValidation = await _block.validate();
-
-          if (!blockValidation) logs.push(blockValidation);
+          if (!(await _block.validate())) logs.push(_block);
         }
 
         resolve(logs);
