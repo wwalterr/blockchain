@@ -91,19 +91,14 @@ class Controller {
 
       if (fieldsFilter) {
         try {
-          this.#blockchain
-            .submitStar(
-              request.body.address,
-              request.body.message,
-              request.body.signature,
-              request.body.star
-            )
-            .then((_response) => {
-              response.status(200).json(_response);
-            })
-            .catch((_error) => {
-              response.status(500).send("An internal error happened");
-            });
+          const block = await this.#blockchain.submitStar(
+            request.body.address,
+            request.body.message,
+            request.body.signature,
+            request.body.star
+          );
+
+          response.status(200).json(block);
         } catch (error) {
           return response.status(500).send(error.message);
         }
