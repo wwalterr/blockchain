@@ -28,7 +28,7 @@ class Blockchain {
       try {
         block.hash = utils.hash(block);
 
-        block.height = self.chain.length + 1;
+        block.height = self.chain.length;
 
         block.time = utils.time();
 
