@@ -36,11 +36,12 @@ class Block {
 
     return new Promise((resolve, reject) => {
       try {
-        const currentHash = self.hash;
+        const validationHash = utils.hash({
+          ...utils.removeObjectKey("hash", self),
+          hash: null,
+        });
 
-        if (currentHash !== utils.hash(self)) resolve(false);
-
-        resolve(true);
+        resolve(self.hash === validationHash);
       } catch (error) {
         reject(error.message);
       }

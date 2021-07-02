@@ -18,9 +18,12 @@ const decodeHex = (path, code, encode = "hex") => {
   fs.writeFileSync(path, buffer);
 };
 
+const removeObjectKey = (key, { [key]: omit, ...rest }) => rest;
+
 module.exports = {
   time,
   hash,
   encodeHex,
   decodeHex,
+  removeObjectKey,
 };
