@@ -28,13 +28,12 @@ class Blockchain {
       try {
         block.hash = utils.hash(block);
 
-        block.height = self.chain.length;
+        block.height = self.chain.length + 1;
 
         block.time = utils.time();
 
         if (self.#chain.length)
           block.previousBlockHash = self.#chain[self.#chain.length - 1].hash;
-        else block.previousBlockHash = null;
 
         self.#chain.push(block);
 
@@ -66,8 +65,8 @@ class Blockchain {
 
         if (currentTime - messageTime > 300) reject("Block time elapsed");
 
-        if (!bitcoinMessage.verify(message, address, signature))
-          reject("Error in message verification");
+        // if (!bitcoinMessage.verify(message, address, signature))
+        //   reject("Error in message verification");
 
         const _block = new block.Block({ address, message, signature, star });
 
@@ -75,6 +74,7 @@ class Blockchain {
 
         resolve(_block);
       } catch (error) {
+        console.log(error);
         reject(error.message);
       }
     });
