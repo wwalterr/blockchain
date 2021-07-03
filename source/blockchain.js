@@ -63,6 +63,7 @@ class Blockchain {
 
         const currentTime = parseInt(utils.time());
 
+        // Check if the 5 minute validation was elapsed
         if (currentTime - messageTime > 300) reject("Block time elapsed");
 
         if (!bitcoinMessage.verify(message, address, signature))
@@ -74,7 +75,6 @@ class Blockchain {
 
         resolve(_block);
       } catch (error) {
-        console.log(error);
         reject(error.message);
       }
     });
@@ -97,7 +97,7 @@ class Blockchain {
 
     return new Promise((resolve, reject) => {
       try {
-        resolve(self.#chain.filter((block) => block.height === height));
+        resolve(self.#chain[height]);
       } catch (error) {
         reject(error.message);
       }
@@ -108,14 +108,13 @@ class Blockchain {
     const self = this;
 
     return new Promise(async (resolve, reject) => {
-      const logs = [];
+      const log = [];
 
       try {
-        for (const _block of self.#chain) {
-          if (!(await _block.validate())) logs.push(_block);
-        }
+        for (const _block of self.#chain)
+          if (_block.height && !(await _block.validate())) log.push(_block);
 
-        resolve(logs);
+        resolve(log);
       } catch (error) {
         reject(error.message);
       }

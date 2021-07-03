@@ -15,16 +15,14 @@ class Block {
     this.previousBlockHash = "";
   }
 
-  blockData() {
+  get data() {
     const self = this;
 
     return new Promisse((resolve, reject) => {
       try {
         if (self.previousBlockHash === null) reject("root");
 
-        const data = JSON.parse(hex2ascii(self.body));
-
-        resolve(data);
+        resolve(JSON.parse(hex2ascii(self.body)));
       } catch (error) {
         reject(error.message);
       }
