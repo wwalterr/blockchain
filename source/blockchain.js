@@ -14,7 +14,7 @@ class Blockchain {
   }
 
   async #startChain() {
-    await this.addBlock(new block.Block("root"));
+    await this.addBlock(new block.Block("Root"));
   }
 
   get chain() {

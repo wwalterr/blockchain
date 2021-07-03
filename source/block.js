@@ -20,7 +20,7 @@ class Block {
 
     return new Promisse((resolve, reject) => {
       try {
-        if (self.previousBlockHash === null) reject("root");
+        if (self.previousBlockHash === null) reject("Root");
 
         resolve(JSON.parse(hex2ascii(self.body)));
       } catch (error) {

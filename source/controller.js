@@ -25,7 +25,7 @@ class Controller {
   // Test
   ping() {
     this.#application.get("/ping", (request, response) => {
-      response.send("pong");
+      response.status(200).send("Pong");
     });
   }
 
@@ -35,9 +35,9 @@ class Controller {
       "/block/height/:height",
       async (request, response) => {
         if (request.params.height) {
-          const height = parseInt(request.params.height);
-
-          const block = await this.#blockchain.blockByHeight(height);
+          const block = await this.#blockchain.blockByHeight(
+            parseInt(request.params.height)
+          );
 
           return block
             ? response.status(200).json(block)
@@ -67,9 +67,6 @@ class Controller {
   // POST a request to check user ownership of a wallet address
   requestOwnership() {
     this.#application.post("/requestValidation", async (request, response) => {
-      // The address must be legacy, e.g in Bitcoin Core console
-      //
-      // getnewaddress "wallet address" "legacy"
       if (request.body.address) {
         const message = await this.#blockchain.ownership(request.body.address);
 

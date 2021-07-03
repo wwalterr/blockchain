@@ -35,7 +35,7 @@ yarn start
 
 Use the [Insomnia](https://insomnia.rest/) HTTP client to load the [Blockchain](./insomnia.json) playground and read the documentation for each endpoint.
 
-This Blockchain can store any type of digital asset, for that type `CTRL` + `SHIFT` + `F` and replace all "star" mentions by the name of digital asset that you want to store. If you want to store files, use the helpers encode / decode in [utils](./source/utils.js), encode the information inside the "star" (your resource name) endpoint or create a endpoint to encode / decode and just pass the encoded data inside "star" (your resource name) request.
+This Blockchain can store any type of digital asset, for that type `CTRL` + `SHIFT` + `F` and replace all "star" mentions by the name of digital asset that you want to store. If you want to store files, use the helpers encode / decode in [utils](./source/utils.js).
 
 ## Contributing
 
