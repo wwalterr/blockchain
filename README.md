@@ -19,7 +19,7 @@ Use the block validator [Bitcoin Core](https://bitcoin.org/en/download) to use t
 
 Use the package manager [Yarn](https://yarnpkg.com/getting-started/install) to install the dependencies.
 
-```bash
+```sh
 yarn
 ```
 
