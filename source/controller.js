@@ -15,11 +15,11 @@ class Controller {
 
     this.requestOwnership();
 
-    this.submitStar();
+    this.submitDigitalAsset();
 
     this.blockByHash();
 
-    this.starsByOwner();
+    this.digitalAssetsByOwner();
   }
 
   // Test
@@ -79,20 +79,20 @@ class Controller {
     });
   }
 
-  // POST to submit a star, need first to request ownership to have the message
-  submitStar() {
-    this.#application.post("/submitStar", async (request, response) => {
+  // POST to submit a digital asset, need first to request ownership to have the message
+  submitDigitalAsset() {
+    this.#application.post("/submitDigitalAsset", async (request, response) => {
       const fieldsFilter = Object.keys(request.body).every((key) =>
-        ["address", "message", "signature", "star"].includes(key)
+        ["address", "message", "signature", "digitalAsset"].includes(key)
       );
 
       if (fieldsFilter) {
         try {
-          const block = await this.#blockchain.submitStar(
+          const block = await this.#blockchain.submitDigitalAsset(
             request.body.address,
             request.body.message,
             request.body.signature,
-            request.body.star
+            request.body.digitalAsset
           );
 
           response.status(200).json(block);
@@ -105,17 +105,17 @@ class Controller {
     });
   }
 
-  // This endpoint allows you to request the list of Stars registered by an owner
-  starsByOwner() {
+  // This endpoint allows you to request the list of digital assets registered by an owner
+  digitalAssetsByOwner() {
     this.#application.get("/blocks/:address", async (request, response) => {
       if (request.params.address) {
         try {
-          const stars = await this.#blockchain.starsByWalletAddress(
+          const digitalAssets = await this.#blockchain.digitalAssetsByWalletAddress(
             request.params.address
           );
 
-          return stars
-            ? response.status(200).json(stars)
+          return digitalAssets
+            ? response.status(200).json(digitalAssets)
             : response.status(404).send("Block not found");
         } catch (error) {
           return response.status(500).send("An internal error happened");

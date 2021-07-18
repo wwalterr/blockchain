@@ -47,14 +47,14 @@ class Blockchain {
   ownership(address) {
     return new Promise((resolve, reject) => {
       try {
-        resolve(`${address}:${utils.time()}:starRegistry`);
+        resolve(`${address}:${utils.time()}:digitalAssetRegistry`);
       } catch (error) {
         reject(error.message);
       }
     });
   }
 
-  submitStar(address, message, signature, star) {
+  submitDigitalAsset(address, message, signature, digitalAsset) {
     const self = this;
 
     return new Promise(async (resolve, reject) => {
@@ -69,7 +69,12 @@ class Blockchain {
         if (!bitcoinMessage.verify(message, address, signature))
           reject("Error in message verification");
 
-        const _block = new block.Block({ address, message, signature, star });
+        const _block = new block.Block({
+          address,
+          message,
+          signature,
+          digitalAsset,
+        });
 
         await self.addBlock(_block);
 
@@ -104,7 +109,7 @@ class Blockchain {
     });
   }
 
-  starsByWalletAddress(address) {
+  digitalAssetsByWalletAddress(address) {
     const self = this;
 
     return new Promise(async (resolve, reject) => {
