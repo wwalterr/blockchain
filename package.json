@@ -4,7 +4,8 @@
   "description": "Simplified private Blockchain",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "start:development": "nodemon index.js"
   },
   "private": true,
   "dependencies": {
@@ -14,5 +15,8 @@
     "express": "^4.17.1",
     "hex2ascii": "^0.0.3",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
