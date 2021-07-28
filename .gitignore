@@ -1,7 +1,8 @@
 # Editor
 .vscode
 
-# Build
+# Dependency
 node_modules
-yarn-error.log
+
+# Yarn
 yarn.lock
