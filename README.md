@@ -11,6 +11,9 @@ A simplified private Blockchain implementation that stores digital assets privat
 - [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Node](https://nodejs.org/en/)
 - [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/)
+- [Bitcoin JS](https://github.com/bitcoinjs/bitcoinjs-lib)
+- [Bitcoin Message](https://github.com/bitcoinjs/bitcoinjs-message)
+- [Crypto JS](https://github.com/brix/crypto-js)
 - [Express](https://expressjs.com/)
 
 ## Installation
